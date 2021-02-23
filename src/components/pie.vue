@@ -1,8 +1,8 @@
 <template lang="html">
 
   <section class="pie mt-4">
-    <footer class="text-center coloresPie">
-
+    <footer class="text-center coloresPie pt-4">
+     <h2>Redes sociales:</h2> 
   <div class="container p-4">
     <section class="mb-4">
       <a class="btn btn-outline-light btn-floating m-1 icon-button linkedin" href="https://www.linkedin.com/in/pablo-ferres-546242205/" role="button"> 
