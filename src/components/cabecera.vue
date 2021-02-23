@@ -2,24 +2,26 @@
 
   <section class="cabecera">
     <div>
-      <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">
-          ElectronicMark
+      <nav class="navbar  navbarCabecera">
+        <a class="navbar-brand tituloNavbar" href="/">
+          <img src="../assets/logo.png" style="width:100 height:30" alt="logoTienda">
         </a>
+        
         <div class="row mr-3">
-          <router-link to="/vistaadmin">
-             <button type="button" class="btn btn-primary mr-3">Panel administracion</button> 
-          </router-link>
           <router-link to="/vistacarrito">
-             <button type="button" class="btn btn-primary mr-3">Carrito ({{carrito.length}})</button> 
+             <!-- <button type="button" class="btn btn-primary mr-3">Carrito ({{carrito.length}})</button> -->
+             <a class="btn-success btn mx-3 botonesCabecera">Carrito <font-awesome-icon :icon="['fas', 'shopping-cart']" /></a>
+          </router-link>
+          <router-link to="/vistaadmin">
+            <a class="btn-success btn mx-3 botonesCabecera" v-if=this.admin>Panel administrador</a>
           </router-link>
           <div v-if=!this.user.loggedIn>
             <router-link to="/vistaregistro"> |
-               <button type="button" class="btn btn-primary">Registro</button> 
+               <a class="btn-success btn mx-3 botonesCabecera">Registro</a>
             </router-link>
           </div>
           <div v-else>
-              <a class="btn-success btn mx-3" v-on:click="logout">Logout <font-awesome-icon :icon="['fas', 'power-off']" /></a>
+              <a class="btn-danger btn mx-3" v-on:click="logout">Logout <font-awesome-icon :icon="['fas', 'power-off']" /></a>
           </div>
           
         </div>
@@ -47,6 +49,10 @@
         if (user) {
           this.user.loggedIn = true;
           this.user.data = user;
+          if (user.email == "administrador@gmail.com"){
+            this.admin = true;
+          }
+          
           console.log(this.user.data)
           console.log("Conectado");
         }
@@ -54,6 +60,7 @@
           this.user.loggedIn = false;
           this.user.data = {};
           console.log("Desconectado");
+          this.admin = false;
         }
       })
 
@@ -66,7 +73,8 @@
           data: {}
         },
         carrito: [],
-        email: ""
+        email: "",
+        admin: false
       }
     },
     methods: {
@@ -87,39 +95,32 @@
         },
 
        
-        // recuperarCarrito: function () {
-        //   db.collection('carrito').where("usuario", "==", this.correo)
-        //     .get()
-        //     .then(function(querySnapshot){
-        //       querySnapshot.forEach(function(doc){
-        //         console.log(doc.id, "=>", doc.data());
-        //       });
-        //     })
-        //     .catch(function(error){
-        //         console.log("Error", error);
-        //     })
-        // } 
       
     computed: {
-      /*correo() {
-        if (this.user.data.email){
-          return this.user.data.email;
-        }else{
-          return null;
-        }
-      }*/
     },
 
     firestore: {
-      //carrito: db.collection('carrito').where("usuario", "==", Firebase.auth.currentUser.email ? Firebase.auth.currentUser.email:"")
     }
 }
 
 
 </script>
 
-<style scoped lang="css">
+<style scoped lang="scss">
+  
   .cabecera {
+    font-family: $fuentecabecerapie;
+  }
 
+  .navbarCabecera{
+    background-color: color(primary);
+  }
+
+  .tituloNavbar{
+    color: color(tertiary);
+  }
+
+  .botonesCabecera {
+    background-color: color(secondary);
   }
 </style>

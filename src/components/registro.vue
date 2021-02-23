@@ -1,38 +1,49 @@
 <template lang="html">
 
   <section class="registro">
+    <h2>Registro</h2>
     <form>
-      <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input type="text" class="form-control" id="nombre"  placeholder="" v-model="nombre" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Correo electrónico</label>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="" v-model="correo" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Contraseña</label>
-        <input type="password" class="form-control" id="password" placeholder="" v-model="password">
-      </div>
-      <div class="form-group">
-        <label for="password">Contraseña</label>
-        <input type="password" class="form-control" id="password1" placeholder="" v-model="password2">
-      </div>
-      <button type="button" class="btn btn-primary" v-if="comprobarPassword()" v-on:click="registrarse" >Registrar</button>
+      <div class="row text-left">
+        <div class="form-group col-12 col-md-6">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" id="nombre"  placeholder="" v-model="nombre" required>
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <label for="email">Correo electrónico</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="" v-model="correo" required>
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <label for="password">Contraseña</label>
+          <input type="password" class="form-control" id="password" placeholder="" v-model="password">
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <label for="password">Contraseña</label>
+          <input type="password" class="form-control" id="password1" placeholder="" v-model="password2">
+        </div>
+        <div class="d-flex col-12 justify-content-center" v-if="comprobarPassword()">
+           <a class="btn-success btn mx-3 mt-3 mb-3" v-on:click="registrarse()">Registrar</a> 
+        </div>
+        </div>
     </form>
+    <h2 class="margen">Iniciar Sesión</h2>
     <form>
-      <div class="row">
-        <div class="col">
-          <input type="email" class="form-control" placeholder="" v-model="emailSesion">
-        </div>
-        <div class="col">
-          <input type="password" class="form-control" placeholder="" v-model="passwordSesion">
-        </div>
+      <div>
+        <div class="row text-left">
+          <div class="form-group col-12 col-md-6">
+             <label for="email">Correo</label>
+            <input type="email" class="form-control" placeholder="" v-model="emailSesion">
+          </div>
+          <div class="form-group col-12 col-md-6">
+             <label for="password">Contraseña</label>
+              <input type="password" class="form-control" placeholder="" v-model="passwordSesion">
+          </div>
+      </div>
+      <a class="btn-success btn mx-3 mt-3 mb-3" v-on:click="iniciarSesion(emailSesion, passwordSesion)">Iniciar sesión</a> 
+      <a class="btn-success btn mx-3 mt-3 mb-3" v-on:click="login"><font-awesome-icon :icon="['fab', 'google']" /></a> 
+      <a class="btn-success btn mx-3 mt-3 mb-3" v-on:click="loginTwitter"><font-awesome-icon :icon="['fab', 'twitter']" /></a> 
     </div>
-    <button type="button" class="btn btn-primary mt-3" v-on:click="iniciarSesion(emailSesion, passwordSesion)">Iniciar sesión</button> 
   </form>
-    <button type="button" class="btn btn-primary mt-3" v-on:click="login">Registrarse con Google</button> 
-    <button type="button" class="btn btn-primary mt-3" v-on:click="loginTwitter">Registrarse con Twitter</button> 
+    
   </section>
 
 </template>
@@ -112,8 +123,12 @@
 
 </script>
 
-<style scoped lang="css">
+<style scoped lang="scss">
   .registro {
+    background-image: $fondo;
+  }
 
+  .margen {
+    margin-top: margen(3px)
   }
 </style>

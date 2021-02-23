@@ -5,12 +5,16 @@
     <div class="row justify-content-center m-0">
         <div v-for="novedad in novedades"
         v-bind:key="novedad.id">
-          <div class="border m-4">
+          <div class="col m-4">
+            <div class="tituloNovedades">
+              <h3>Proximamente</h3>
+            </div>
             <h5>{{novedad.nombre}}</h5>
             <div>
-               <img style="object-fit:cover; height: 200px" v-bind:src='novedad.imagen' alt="novedad.id"> 
+               <img class="imagenNovedades" v-bind:src='novedad.imagen' alt="novedad.id"> 
             </div>
-            <p>{{novedad.precio}}</p>
+            <p>PVP: <span>{{novedad.precio}}</span></p>
+             <a class="btn-success btn mb-3">Avisame cuando este disponible <font-awesome-icon :icon="['fas', 'envelope']" /></a>
           </div>
         </div>
     </div>
@@ -75,8 +79,20 @@
 
 </script>
 
-<style scoped lang="css">
+<style scoped lang="scss">
   .novedades {
+    font-family: $fuenteproductos;
+  }
 
+  .tituloNovedades {
+    border-bottom: 2px solid black;
+  }
+
+  .imagenNovedades {
+    @include imagen(200px);
+  }
+
+  .btn{
+    background-color: color(secondary);
   }
 </style>

@@ -23,7 +23,6 @@ library.add(fab)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
-Vue.use(VueSimpleSpinner)
 Vue.use(VueRouter)
 Vue.use(Notifications)
 Vue.use(firestorePlugin)

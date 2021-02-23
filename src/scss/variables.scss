@@ -1,0 +1,16 @@
+$fuentecabecerapie: 'Oswald', sans-serif;
+$fuenteproductos: 'Noto Sans TC', sans-serif;
+$fondo: url('../assets/bush.png');
+
+
+
+$colores: (
+    primary: #000000,
+    secondary: #50BA00,
+    tertiary: white,
+);
+
+@function color ($color-nombre){
+    @return map-get($colores, $color-nombre);
+}
+

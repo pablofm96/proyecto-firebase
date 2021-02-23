@@ -1,18 +1,20 @@
 <template lang="html">
 
   <section class="productos">
-    
-    <div class="row m-0 justify-content-center">
+    <h2 class="pt-3 border-top">Neveras</h2>
+    <div class="row m-0 justify-content-center border-bottom">
       <div v-for="nevera in neveras"
         v-bind:key="nevera.id">
-          <div class="row border m-4 " style="width:400px">
+          <div class="row py-3 m-4 col-12 carta" style="width:500px; border-radius:20px">
             <div class="col-4">
-             <img style="object-fit:cover; height: 200px" v-bind:src='nevera.imagen' alt="novedad.id"> 
+             <img class="imagenProductos1 rounded"  style="float:left" v-bind:src='nevera.imagen' alt="novedad.id">
+             <img class="imagenProductos2 rounded"  style="float:left" v-bind:src='nevera.imagen2' alt="novedad.id">  
             </div>
-            <div class="col-8 ">
+            <div class="d-flex row col-8 align-items-center justify-content-center pl-5 prod">
+              <h5>{{nevera.nombre}}</h5>
               <p class="card-text text-center">{{nevera.descripcion}}</p>
-              <p class="card-text text-center">{{nevera.precio}}</p>
-              <button type="button" class="btn btn-primary" v-if="conectado&&nevera.stock>0" v-on:click="anadirCarrito(nevera.nombre, nevera.imagen, nevera.precio, nevera.id, nevera.stock)">Añadir al carrito</button> 
+              <p class="card-text text-center">PVP: <span>{{nevera.precio}}</span></p>
+              <a class="btn-success btn mx-3" v-if="conectado&&nevera.stock>0" v-on:click="anadirCarrito(nevera.nombre, nevera.imagen, nevera.precio, nevera.id, nevera.stock)">Añadir al carrito <font-awesome-icon :icon="['fas', 'cart-plus']" /></a> 
             </div>
           </div>
       </div>
@@ -72,14 +74,14 @@
         .catch((error) => {
           console.error("Error writing document: ", error);
         });
+        this.$notify({
+            group: 'foo',
+            type: 'success',
+            position:'bottom left',
+            title: 'Enhorabuena',
+            text: 'Producto añadido al carrito'
+            })
         },
-
-
-        obtenerCarrito: function(){
-          /*this.carrito = db.collection('carrito').where("usuario", "==", "pabloferres96@gmail.com");
-          console.log(this.carrito);*/
-          console.log(Firebase.recuperarCarrito());
-        }
 
     },
     computed: {
@@ -96,7 +98,32 @@
 
 </script>
 
-<style>
+<style scoped lang="scss">
+  
   .productos {
+    font-family: $fuenteproductos;
+    background-image: $fondo;
+  }
+
+  .imagenProductos1 {
+    @include imagen1
+  }
+
+  .imagenProductos2 {
+    @include imagen2
+  }
+  .prod{
+    color: color(primary);
+    background-color: color(tertiary);
+    
+  }
+  .carta:hover .imagenProductos1 {
+          opacity:0;
+          transition:1s;
+
+  }
+
+  .btn{
+    background-color: color(secondary);
   }
 </style>

@@ -1,20 +1,14 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth';
+import {firebaseConfig} from "./keyfirebase.js"
 //import { data } from 'jquery';
 
 
   let usuario = [];
   let carrito = [];
   let conectado = false;
-  var firebaseConfig = {
-    apiKey: "AIzaSyAPusl9EGAjqDWsrou02qtFK80yvuyH180",
-    authDomain: "proyectotienda-dfb06.firebaseapp.com",
-    projectId: "proyectotienda-dfb06",
-    storageBucket: "proyectotienda-dfb06.appspot.com",
-    messagingSenderId: "935012703140",
-    appId: "1:935012703140:web:ba0e2b7132aa14d9cebf31"
-  };
+  
   
   export const db = firebase
   .initializeApp(firebaseConfig)
