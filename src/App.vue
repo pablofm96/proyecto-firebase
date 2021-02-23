@@ -1,10 +1,15 @@
 <template>
   <div id="app">
-    <Cabecera/>
-    <router-view/>
-    <notifications group="foo"/>
-    <Novedades/>
-    <Pie/>
+    <div v-if="neveras">
+      <Cabecera/>
+      <router-view/>
+      <notifications group="foo"/>
+      <Novedades/>
+      <Pie/>
+    </div>
+    <div v-if="!neveras">
+      <Preload/>
+    </div>
   </div>
 </template>
 
@@ -12,6 +17,8 @@
 import Cabecera from './components/cabecera.vue'
 import Pie from './components/pie.vue'
 import Novedades from './components/novedades.vue'
+import Preload from './components/preload.vue'
+import {db} from "./db.js"
 
 //import Productos from './components/productos.vue'
 
@@ -21,8 +28,17 @@ export default {
   components: {
     Cabecera, 
     Pie,
-    Novedades
+    Novedades,
+    Preload
     //Productos
+  },
+  data() {
+    return {
+      neveras: null
+    }
+  },
+  firestore: {
+    neveras: db.collection('neveras')  
   }
 }
 </script>

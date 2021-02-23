@@ -28,7 +28,7 @@
     <h2 class="margen">Iniciar Sesión</h2>
     <form>
       <div>
-        <div class="row text-left">
+        <div class="row text-left pt-3">
           <div class="form-group col-12 col-md-6">
              <label for="email">Correo</label>
             <input type="email" class="form-control" placeholder="" v-model="emailSesion">
@@ -126,8 +126,12 @@
 <style scoped lang="scss">
   .registro {
     background-image: $fondo;
+    font-family: $fuenteproductos;
   }
 
+  .btn{
+    background-color: color(secondary);
+  }
   .margen {
     margin-top: margen(3px)
   }
